@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "591674208828",
+    "firebase_url": "https://gdgcasablanca-16018.firebaseio.com",
+    "project_id": "gdgcasablanca-16018",
+    "storage_bucket": "gdgcasablanca-16018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591674208828:android:3c2c26d49f0e47dc0f0939",
+        "android_client_info": {
+          "package_name": "htmdev.com.gdg_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591674208828-g6pjjpjm8c9ion8l5pq7ccoouv3pq624.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOIPbOV5mQ1GZ_pyyurllFjFH5yHWBTY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "591674208828-g6pjjpjm8c9ion8l5pq7ccoouv3pq624.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

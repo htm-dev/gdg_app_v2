@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:gdg_app/universal/dev_scaffold.dart';
 import 'package:story_view/story_controller.dart';
@@ -10,7 +11,6 @@ class StoriesPage extends StatefulWidget {
 
 class _StoriesPageState extends State<StoriesPage> {
   final storyController = StoryController();
-
   @override
   void dispose() {
     storyController.dispose();
@@ -32,7 +32,7 @@ class _StoriesPageState extends State<StoriesPage> {
           ),*/
           StoryItem.pageImage(
             NetworkImage(
-                "https://scontent.fcmn3-1.fna.fbcdn.net/v/t1.0-9/78733796_2378606438918448_7307251877589024768_o.jpg?_nc_cat=109&_nc_ohc=Rkic7_HeOQcAQk73Epjjle8QmTS2X127AKiS972DL_7yg15EKYbvUTL6g&_nc_ht=scontent.fcmn3-1.fna&oh=a4a819a2cda4c6d20886533bb2016d0e&oe=5E664B75"),
+                "images/2019-12-13 17:43:31.382747.png"),
             caption: "GDG Casablanca",
           ),
           StoryItem.pageImage(

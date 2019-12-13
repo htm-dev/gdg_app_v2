@@ -4,6 +4,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gdg_app/config/config_bloc.dart';
 import 'package:gdg_app/config/config_event.dart';
+import 'package:gdg_app/make_story/image_capture.dart';
 import 'package:gdg_app/stories/stories_app.dart';
 import 'package:gdg_app/utils/gdgcasablanca.dart';
 import 'package:share/share.dart';
@@ -11,12 +12,13 @@ import 'package:share/share.dart';
 class DevScaffold extends StatelessWidget {
   final String title;
   final Widget body;
+  final Widget bottomNavBar;
   final Widget tabBar;
   final  currentIndex = 0;
   final _selectedIndex = 0;
   final  _counter = 0;
   const DevScaffold(
-  {Key key , @required this.body,@required this.title, this.tabBar}
+      {Key key , @required this.body,@required this.title,this.bottomNavBar, this.tabBar}
       ) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,16 +31,16 @@ class DevScaffold extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: title != null ?
-                  Text(title) :
-                Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    GdgCasablanca.logo,
-                    fit: BoxFit.contain,
-                    height: 32,
-                  ),
-                  ],
+            Text(title) :
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  GdgCasablanca.logo,
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+              ],
             ),
             centerTitle: true,
             bottom: tabBar != null ? tabBar: null,
@@ -58,7 +60,7 @@ class DevScaffold extends StatelessWidget {
               IconButton(
                 //TODO : Change the sharing message
                 onPressed: ()=>Share.share(
-                  "Donwload the new ....."
+                    "Donwload the new ....."
                 ),
                 icon: Icon(
                   Icons.share,
@@ -67,25 +69,25 @@ class DevScaffold extends StatelessWidget {
               )
             ],
           ),
-
+          bottomNavigationBar: bottomNavBar,
           body: body,
           floatingActionButton: SpeedDial
             (
             animatedIcon: AnimatedIcons.menu_close,
             children: [
               SpeedDialChild(
-                child: Icon(FontAwesomeIcons.circle),
-                label: "Stories",
-                onTap: ()=> Navigator.pushNamed(context, StoriesPage.routeName)
+                  child: Icon(FontAwesomeIcons.circle),
+                  label: "Stories",
+                  onTap: ()=> Navigator.pushNamed(context, StoriesPage.routeName)
               ),
               SpeedDialChild(
                   child: Icon(Icons.camera),
                   label: "Make Story",
-                  onTap: ()=>print("Stories !")
+                  onTap: ()=>Navigator.pushNamed(context, ImageCapture.routeName)
               )
             ],
           ),
-         /* bottomNavigationBar: BottomNavyBar(
+          /* bottomNavigationBar: BottomNavyBar(
             selectedIndex: _selectedIndex,
             showElevation: true, // use this to remove appBar's elevation
             onItemSelected: (index) => () {

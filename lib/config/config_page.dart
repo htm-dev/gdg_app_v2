@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gdg_app/agenda/agenda_page.dart';
 import 'package:gdg_app/config/index.dart';
 import 'package:gdg_app/home/home_page.dart';
+import 'package:gdg_app/make_story/image_capture.dart';
 import 'package:gdg_app/map/map_page.dart';
 import 'package:gdg_app/speakers/speakers_page.dart';
 import 'package:gdg_app/stories/stories_app.dart';
@@ -62,6 +63,7 @@ class _ConfigPageState extends State<ConfigPage> {
                   TeamPage.routeName:(context) =>TeamPage(),
                   MapPage.routeName:(context) =>MapPage(),
                   StoriesPage.routeName:(context)=>StoriesPage(),
+                  ImageCapture.routeName:(context) => ImageCapture(),
               },
             );
           },
