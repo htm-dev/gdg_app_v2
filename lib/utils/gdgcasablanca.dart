@@ -1,3 +1,4 @@
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,8 +11,9 @@ class GdgCasablanca{
   static Color secondaryColor = Colors.black;
   static const String google_sans_family = "GoogleSans";
   static bool isDebugMode = true;
-  static const String event_date = "SAT,NOV 30, 10:00AM";
+  static const String event_date = "SAT,DEC 28, 10:00AM";
   static const String event_place = "EMSI Casablanca";
+  static const String meet_up_url ="https://www.meetup.com/GDGCasablanca/events/past/";
 
   //Images
 
@@ -40,7 +42,15 @@ class GdgCasablanca{
   static const String checkNetText =
       "It seems like your internet connection is not active.";
 
-
+  //Event Calender
+  static Event event =  Event
+    (
+    title: 'DEVFEST Casablanca',
+    description: descText,
+    location: event_place,
+    startDate: DateTime.parse("2019-12-28 10:00:00"),
+    endDate: DateTime.parse("2019-12-28 19:00:00Z"),
+  );
   // Preferences
   static SharedPreferences prefs;
   static const String darkPref = "darkPref";

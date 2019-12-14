@@ -16,6 +16,13 @@ class _StoriesPageState extends State<StoriesPage> {
     storyController.dispose();
     super.dispose();
   }
+    Future<String> getImageUrl(String imageNm)async{
+    String image;
+    await FirebaseStorage.instance.ref().child("images").child(imageNm).getDownloadURL().then((url){
+      image = url.toString();
+    });
+      return image;
+  }
   @override
   Widget build(BuildContext context) {
     return DevScaffold(
@@ -30,11 +37,10 @@ class _StoriesPageState extends State<StoriesPage> {
             "Nice!\n\nTap to continue.",
             Colors.red,
           ),*/
-          StoryItem.pageImage(
-            NetworkImage(
-                "images/2019-12-13 17:43:31.382747.png"),
+          /*StoryItem.pageImage(
+            NetworkImage(getImageUrl("2019-12-13 16:19:26.500274.png").toString()),
             caption: "GDG Casablanca",
-          ),
+          ),*/
           StoryItem.pageImage(
             NetworkImage(
                 "https://scontent.fcmn3-2.fna.fbcdn.net/v/t1.0-9/78109113_2378607082251717_6936103777648771072_o.jpg?_nc_cat=108&_nc_ohc=j-VAFI9Al8cAQku9dNRB__anksQHzcu7p8ephSKGJKDmXulcenVT1PkPw&_nc_ht=scontent.fcmn3-2.fna&oh=abc3b19e185e357dbaaed9210518831b&oe=5E830395"),

@@ -1,3 +1,4 @@
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gdg_app/agenda/agenda_page.dart';
@@ -8,7 +9,7 @@ import 'package:gdg_app/stories/stories_app.dart';
 import 'package:gdg_app/utils/gdgcasablanca.dart';
 import 'package:gdg_app/universal/image_card.dart';
 import 'package:gdg_app/utils/tools.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class HomeFront extends StatelessWidget {
 
   List<Widget> EventsText(context) =>[
@@ -47,7 +48,14 @@ class HomeFront extends StatelessWidget {
         icon: FontAwesomeIcons.meetup,
         color: Colors.red,
         title: "Meetup",
-        onPressed: () {},
+        onPressed: () async{
+          const url = GdgCasablanca.meet_up_url;
+          if (await canLaunch(url)) {
+          await launch(url);
+          } else {
+          throw 'Could not launch $url';
+          }
+        },
       )
     ],
   );
@@ -87,8 +95,15 @@ class HomeFront extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Icon(FontAwesomeIcons.calendar,
-                color: Colors.grey,),
+              IconButton(
+                icon : Icon(
+                  FontAwesomeIcons.calendar,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  Add2Calendar.addEvent2Cal(GdgCasablanca.event);
+                },
+              ),
               Text(GdgCasablanca.event_date,
                   style: TextStyle(color: Colors.grey),),
               IconButton(
