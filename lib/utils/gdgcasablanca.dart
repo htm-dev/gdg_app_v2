@@ -12,7 +12,7 @@ class GdgCasablanca{
   static const String google_sans_family = "GoogleSans";
   static bool isDebugMode = true;
   static const String event_date = "SAT,DEC 28, 10:00AM";
-  static const String event_place = "EMSI Casablanca";
+  static const String event_place = "EMSI Les oranges";
   static const String meet_up_url ="https://www.meetup.com/GDGCasablanca/events/past/";
 
   //Images
