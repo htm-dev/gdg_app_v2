@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:gdg_app/config/index.dart';
 import 'package:gdg_app/universal/dev_scaffold.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
@@ -15,28 +16,39 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController _controller;
   bool isMapCreated = false;
   static final LatLng myLocation = LatLng(33.541694, -7.673548);
+  final Map<String, Marker> _markers = {};
 
   @override
   void initState() {
     super.initState();
   }
 
-  final CameraPosition _kGooglePlex = CameraPosition(
+ final CameraPosition _kGooglePlex = CameraPosition(
     target: myLocation,
     zoom: 14.4746,
   );
-
-  Set<Marker> _createMarker() {
-    return <Marker>[
+    Set<Marker> _createMarker() {
+    _markers["event_location"]=
       Marker(
-          markerId: MarkerId("marker_1"),
+          markerId: MarkerId("event_position"),
           position: myLocation,
           icon: BitmapDescriptor.defaultMarkerWithHue(
             BitmapDescriptor.hueOrange,
-          )),
-    ].toSet();
+          )
+    );
   }
-
+  void _getLocation() async {
+    var currentLocation = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    setState(() {
+      final marker = Marker(
+        markerId: MarkerId("curr_loc"),
+        position: LatLng(currentLocation.latitude, currentLocation.longitude),
+        infoWindow: InfoWindow(title: 'Your Location'),
+      );
+      _markers["current_locaion"] = marker;
+    });
+  }
   changeMapMode() {
     if (ConfigBloc().darkModeOn) {
       getJsonFile("assets/nightmode.json").then(setMapStyle);
@@ -55,6 +67,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+      this._createMarker();
     if (isMapCreated) {
       changeMapMode();
     }
@@ -69,7 +82,7 @@ class _MapPageState extends State<MapPage> {
               zoomGesturesEnabled: true,
               myLocationButtonEnabled: true,
               myLocationEnabled: true,
-              markers: _createMarker(),
+              markers: _markers.values.toSet(),
               initialCameraPosition: _kGooglePlex,
               onMapCreated: (GoogleMapController controller) {
                 _controller = controller;
@@ -95,9 +108,15 @@ class _MapPageState extends State<MapPage> {
                               children: []),
                         ]),
                   )),
-            )
+            ),
+
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _getLocation,
+        tooltip: 'Get Location',
+        child: Icon(Icons.flag),
       ),
       title: "Locate the event",
     );

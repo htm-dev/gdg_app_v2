@@ -14,11 +14,12 @@ class DevScaffold extends StatelessWidget {
   final Widget body;
   final Widget bottomNavBar;
   final Widget tabBar;
+  final Widget floatingActionButton;
   final  currentIndex = 0;
   final _selectedIndex = 0;
   final  _counter = 0;
   const DevScaffold(
-      {Key key , @required this.body,@required this.title,this.bottomNavBar, this.tabBar}
+      {Key key , @required this.body,@required this.title,this.bottomNavBar, this.tabBar,this.floatingActionButton}
       ) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -71,8 +72,9 @@ class DevScaffold extends StatelessWidget {
           ),
           bottomNavigationBar: bottomNavBar,
           body: body,
-          floatingActionButton: SpeedDial
-            (
+          floatingActionButton: floatingActionButton != null ?
+              floatingActionButton :
+          SpeedDial(
             animatedIcon: AnimatedIcons.menu_close,
             children: [
               SpeedDialChild(

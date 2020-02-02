@@ -6,6 +6,7 @@ import 'package:gdg_app/universal/dev_scaffold.dart';
 import 'package:gdg_app/utils/gdgcasablanca.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:edge_detection/edge_detection.dart';
 
 class ImageCapture extends StatefulWidget {
   static const String routeName = "/imageCap";
@@ -19,9 +20,13 @@ class _ImageCaptureState extends State<ImageCapture> {
 
   //Select an image via gallery or camera
   Future<void> _pickImage(ImageSource source) async{
-    File selected = await ImagePicker.pickImage(source: source);
+    File selectedImage ;
+    String selected = await EdgeDetection.detectEdge;
+    if (source == ImageSource.gallery) {
+      selectedImage = await ImagePicker.pickImage(source: source);
+    }
     setState(() {
-      _imageFile = selected;
+      _imageFile = selectedImage;
     });
   }
 

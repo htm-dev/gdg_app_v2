@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gdg_app/home/speaker.dart';
 import 'package:gdg_app/universal/dev_scaffold.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 class SpeakersPage extends StatelessWidget {
   static const String routeName = "/speakers";
   @override
@@ -13,6 +14,7 @@ class SpeakersPage extends StatelessWidget {
           itemCount: speakers.length,
           itemBuilder: (c,i){
             return Card(
+              
               elevation: 0.0,
                child: Padding(
                  padding: const EdgeInsets.all(12),
