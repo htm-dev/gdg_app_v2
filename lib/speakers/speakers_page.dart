@@ -13,6 +13,8 @@ class SpeakersPage extends StatelessWidget {
           shrinkWrap: true,
           itemCount: speakers.length,
           itemBuilder: (c,i){
+            /*Firestore.instance.collection('speakers').document()
+                .setData({ 'speaker_name': speakers[i].speakerName, 'speaker_desc': speakers[i].speakerDesc , 'speaker_seassion':speakers[i].speakerSession });*/ 
             return Card(
               
               elevation: 0.0,
